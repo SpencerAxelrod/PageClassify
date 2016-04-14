@@ -1,0 +1,4 @@
+Install BeautifulSoup4 HTML parser for python3:
+	python3 -m pip install beautifulsoup4
+
+	
