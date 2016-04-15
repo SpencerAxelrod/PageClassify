@@ -73,7 +73,6 @@ Example program use, with output (ensure quotations when passing in argument):
 	plastic
 	
 
-
-
-
 Some sites like Amazon does not like automated access to their data, and may deny access even with spoofed header. In these cases they might send a 403 Forbidden, or send anti-automation HTML.
+
+https://github.com/SpencerAxelrod/PageClassify
