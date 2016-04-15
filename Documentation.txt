@@ -4,6 +4,10 @@ Install BeautifulSoup4 HTML parser for python3:
 Intall Requests module
 	python3 -m pip install beautifulsoup4
 
+Install Stop Words module
+	 python3 -m pip install stop-words
+
+	 
 Ensure quotations when passing in argument
 
 
