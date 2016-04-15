@@ -2,7 +2,9 @@ import sys
 import urllib.request	#python3
 import requests
 import nltk
+#from stemming.porter2 import stem
 from nltk.corpus import stopwords
+from nltk.stem.wordnet import WordNetLemmatizer
 from stop_words import get_stop_words
 from bs4 import BeautifulSoup
 
@@ -39,10 +41,13 @@ def analyze_page(page_url):
 	#nltk.download('all')
 	#stop_words =  stopwords.words("english")
 	stop_words = get_stop_words('english')
+	words_to_add = ['like', '...']
+	stop_words = stop_words + words_to_add
 	#print(stop_words)
 
 
-	ignore_tags = ["script", "img", "meta", "span", "link", "style"]
+	#ignore_tags = ["script", "img", "meta", "link" "style"]
+	ignore_tags = ["script", "img", "meta", "style"]
 
 	#print(soup.find_all())
 
@@ -59,6 +64,8 @@ def analyze_page(page_url):
 						print(word_lower, tag)"""
 						
 
+	weights = {'title': 20, 'span': .5, "link": .2}
+	lemma = WordNetLemmatizer()
 	for tag in soup.find_all():
 		#if tag.name == "span":
 			#print()
@@ -70,20 +77,26 @@ def analyze_page(page_url):
 			if words:
 				words = words.split()
 				for word in words:
-					word_lower = word.lower()
+					word_lower = lemma.lemmatize(word.lower())
 					#print()
 					#print(word_lower, tag.name)
-					if word_lower not in stop_words:
+					if word_lower not in stop_words and len(word_lower) > 1:
 
-						#if word_lower == "!important;":
+						#if word_lower == "nsa":
 							#print(tag.name)
-
+						multiplier = 1
+						if tag.name in weights:
+							multiplier = weights[tag.name] 
 						if word_lower in word_counts:
-							word_counts[word_lower] = word_counts[word_lower] + 1
+							word_counts[word_lower] = word_counts[word_lower] + (1 * multiplier)
 						else:
-							word_counts[word_lower] = 1
+							word_counts[word_lower] = 1 * multiplier
 				#print(words)
-	#print(sorted(word_counts.items(), key=lambda x:x[1]))
+	#print(sorted(word_counts.items(), key=lambda x:x[1])[-50:])
+	#print(word_counts["cpt-122"])
+
+	for x in reversed(sorted(word_counts.items(), key=lambda x:x[1])[-20:]):
+		print(x)
 
 
 
