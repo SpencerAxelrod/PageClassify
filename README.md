@@ -13,7 +13,7 @@ Run from command line:
 	~$ python3 Analyze.py <WEB PAGE URL IN QUOTES>
 
 
-For this implementation, I began by fetching the HTML and getting a word count for each word using Beautiful Soup. Common stop words, as well as single character words were ignored. After this, I assigned weights to words based on the HTML tag they reside in (further ignoring words in some tags, like <script>). I also gave weight to words who were in the URL string of the page. 
+For this implementation, I began by fetching the HTML and getting a word count for each word using Beautiful Soup. Common stop words, as well as single character words were ignored. After this, I assigned weights to words based on the HTML tag they reside in (further ignoring words in some tags, like 'script'). I also gave weight to words who were in the URL string of the page. 
 
 This is sufficient for finding single words, so for Phrases I started keeping track of strings of up to 5 words in a row. If phrases like these are repeated, the longer the phrase the more weight they will have overall. The top 25 highest weighted words/phrases are then checked with each other to see if one is a substring of another, then returned.
 
