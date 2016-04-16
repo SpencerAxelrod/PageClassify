@@ -3,8 +3,8 @@ Dependencies:
 Install BeautifulSoup4 HTML parser for python3:
 	python3 -m pip install beautifulsoup4
 
-Intall Requests module
-	python3 -m pip install beautifulsoup4
+Intall Requests module:
+	python3 -m pip install requests
 
 Run from command line: 
 	~$ python3 Analyze.py <WEB PAGE URL IN QUOTES>
