@@ -13,14 +13,14 @@ Run from command line:
 	~$ python3 Analyze.py <WEB PAGE URL IN QUOTES>
 
 
-For this implementation, I began by fetching the HTML and getting a word count for each word using Beautiful Soup. Common stop words, as well as single character words were ignored. After this, I assigned weights to words based on the HTML tag they reside in (further ignoring words in some tags, like 'script'). I also gave weight to words who were in the URL string of the page. 
+This implementation fetches the HTML and subsequently the word count for each word via Beautiful Soup. Common stop words and single character words are ignored. Weights are assigned to words based on the HTML tag (ignoring certain tags, e.g.'script'). Further weight is given to words in the page URL string. 
 
-This is sufficient for finding single words, so for Phrases I started keeping track of strings of up to 5 words in a row. If phrases like these are repeated, the longer the phrase the more weight they will have overall. The top 25 highest weighted words/phrases are then checked with each other to see if one is a substring of another, then returned.
+The implementation is sufficient for finding single words. For phrases, I started keeping track of strings of up to 5 words in a row. If phrases like these are repeated, the longer the phrase the more weight they will have overall. The top 25 highest weighted words/phrases are then checked with each other to see if one is a substring of another, then returned.
 
-After playing with the weights, I found that the weights in the final implementation gave the most accurate results oer a range of web pages. The rationale is that, in general, the URL and 'title' tags hold high importance in terms of relevancy. Additionally, if a multi-word phrase is repeated, it is likely to hold value as a relevant phrase.
+After playing with the weights, I found that the weights in the final implementation gave the most accurate results over a range of web pages. The rationale is that, in general, the URL and 'title' tags hold high importance in terms of relevancy. Additionally, if a multi-word phrase is repeated, it is likely to hold value as a relevant phrase.
 
 
-Example program use, with output (ensure quotations when passing in argument):
+Examples, with output (ensure arguments in quotations):
 
 	~$ python3 Analyze.py "http://www.cbsnews.com/news/seoul-says-north-korea-launch-of-a-missile-appears-to-have-failed/"
 	north
@@ -76,4 +76,4 @@ Example program use, with output (ensure quotations when passing in argument):
 	plastic
 	
 
-Some sites like Amazon does not like automated access to their data, and may deny access even with spoofed header. In these cases they might send a 403 Forbidden, or send anti-automation HTML.
+Some sites HTML response may not cooperate with being scraped
